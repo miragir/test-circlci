@@ -1,0 +1,20 @@
+version: 2.1
+
+parameters:
+  message:
+    type: string
+    default: "Hello, CircleCI!"
+
+jobs:
+  print-message:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: Print Parameter Value
+          command: echo "<< pipeline.parameters.message >>"
+
+workflows:
+  print-workflow:
+    jobs:
+      - print-message
